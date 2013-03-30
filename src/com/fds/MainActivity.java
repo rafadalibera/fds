@@ -2,6 +2,7 @@ package com.fds;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +22,8 @@ public class MainActivity extends Activity {
 		movies.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				//startActivity(Food);
+				Intent intent = new Intent(getApplicationContext(), MoviesSearch.class);
+				startActivity(intent);
 			}
 		});
 	}

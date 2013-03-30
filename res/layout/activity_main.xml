@@ -18,9 +18,9 @@
         android:id="@+id/buttonMovies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="62dp"
         android:text="movies" />
 
 </RelativeLayout>
