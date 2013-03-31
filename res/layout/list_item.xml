@@ -20,15 +20,14 @@
             android:paddingBottom="2dip" />
 		<!-- Description label -->
 		
-		<!--  
+		  
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/url"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#acacac"
-            android:paddingBottom="2dip">
+            android:layout_height="1dp"
+			android:visibility="invisible" >
         </TextView>
-        -->
+        
                 <!-- Linear layout for cost and price Cost: Rs.100 -->
         <LinearLayout
         android:layout_width="fill_parent"

@@ -9,17 +9,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.support.v4.app.ListFragment;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabMovies extends ListFragment {
 	
@@ -33,6 +39,7 @@ public class TabMovies extends ListFragment {
     //private static String url = "http://api.androidhive.info/contacts/";
         	
     // JSON Node names
+    private static final String TAG_ALTERNATE_IDS = "alternate_ids";
     private static final String TAG_MOVIES = "movies";
     private static final String TAG_ID = "id";
     private static final String TAG_TITLE = "title";
@@ -48,9 +55,32 @@ public class TabMovies extends ListFragment {
     private static final String TAG_SYNOPSIS = "synopsis";
     private static final String TAG_RATINGS = "ratings";
     private static final String TAG_RATINGS_SCORE = "critics_score";
+    private static final String TAG_LINKS = "links";
+    private static final String TAG_LINKS_ALTERNATE = "alternate";
      
     // contacts JSONArray
     JSONArray movies = null;
+    
+    ListView lv;
+    
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+    	/*
+    	String url = ((TextView) v.findViewById(R.id.url)).getText().toString();
+    	
+		Intent i = new Intent(getActivity(), DisplayMovie.class);
+		i.putExtra("url", url);
+		startActivity(i); 
+		*/ 	    	
+    	
+		Context context = getActivity().getApplicationContext();
+		CharSequence text = "clicked";
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
+		   
+    }
 
     @Override
        public void onActivityCreated(Bundle savedInstanceState) {
@@ -70,19 +100,19 @@ public class TabMovies extends ListFragment {
 			
 			for(int i = 0; i < movies.length(); i++){
                JSONObject c = movies.getJSONObject(i);
-
+               
                // Storing each json item in variable
                String id = c.getString(TAG_ID);
                String title = c.getString(TAG_TITLE);
-               String year = c.getString(TAG_YEAR);
+               //String year = c.getString(TAG_YEAR);
                String mpaa = c.getString(TAG_MPAA);
                //String critics = c.getString(TAG_CRITICS);
                String runtime = c.getString(TAG_RUNTIME);
                String synopsis = c.getString(TAG_SYNOPSIS);
 
-               // Phone number is agin JSON Object
+               // Phone number is again JSON Object
                JSONObject posters = c.getJSONObject(TAG_POSTERS);
-               String thumbnail = posters.getString(TAG_POSTERS_THUMBNAIL);
+               //String thumbnail = posters.getString(TAG_POSTERS_THUMBNAIL);
                String profile = posters.getString(TAG_POSTERS_PROFILE);
                
                JSONObject rating = c.getJSONObject(TAG_RATINGS);
@@ -96,6 +126,7 @@ public class TabMovies extends ListFragment {
                map.put(TAG_TITLE, title);
                map.put(TAG_RATINGS_SCORE, score+"/100");
                map.put(TAG_RUNTIME, runtime+"min");
+               map.put(TAG_LINKS_ALTERNATE, url);
 
                // adding HashList to ArrayList
                contactList.add(map);
@@ -122,12 +153,15 @@ public class TabMovies extends ListFragment {
        ListAdapter adapter = new SimpleAdapter(getActivity(), contactList,
                R.layout.list_item,
                new String[] { TAG_TITLE, TAG_RATINGS_SCORE, TAG_RUNTIME }, new int[] {
-                       R.id.name, R.id.email, R.id.mobile });
+                       R.id.name, R.id.email, R.id.mobile});
 
        setListAdapter(adapter);
 
        // selecting single ListView item
-       ListView lv = getListView();
+       lv = getListView();
+       
+
+           
        }
    
    @Override
@@ -138,6 +172,7 @@ public class TabMovies extends ListFragment {
           
        return view;
    }
+
 }
    
    class JSONSearch extends AsyncTask<String, Void, JSONArray> {

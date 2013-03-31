@@ -33,8 +33,8 @@ public class YelpSearch extends AsyncTask<String, Void, YelpSearchResult>{
 		// Define your keys, tokens and secrets.  These are available from the Yelp website.  
 		String CONSUMER_KEY = "3C5eXVeaojxIZaIvGtYcVA";
 		String CONSUMER_SECRET = "PH-OzSS3sC-4N5tkEDzhv75Pro8";
-		String TOKEN = "M5vfsNXev6H9JxFcePbqTDIsfztL2Alr";
-		String TOKEN_SECRET = "ZFJUsp57PR9oXWHwzJkBQeY2iXM";
+		String TOKEN = "4E-LHb6CjBuZ1sBHxCQ8EAiVm7myWNSD";
+		String TOKEN_SECRET = "SBf1gxc-rKJkeelVfkMQz-EFjow";
 /*
 		// Define your keys, tokens and secrets.  These are available from the Yelp website.  
 		String CONSUMER_KEY = "PUT YOUR CONSUMER KEY HERE";
@@ -55,28 +55,16 @@ public class YelpSearch extends AsyncTask<String, Void, YelpSearchResult>{
 		// Sample of how to turn that text into Java objects.  
 		try {
 			places = new Gson().fromJson(rawData, YelpSearchResult.class);
-			
-			Log.d("TAG", "Your search found " + places.getTotal() + " results.");
-			Log.d("TAG", "Yelp returned " + places.getBusinesses().size() + " businesses in this request.");
-			//System.out.println("Your search found " + places.getTotal() + " results.");
-			//System.out.println("Yelp returned " + places.getBusinesses().size() + " businesses in this request.");
-			//System.out.println();
-			
+			/*
 			for(Business biz : places.getBusinesses()) {
-				Log.d("TAG", biz.getName());
-				//System.out.println(biz.getName());
+				//Log.d("TAG", biz.getName());
 				for(String address : biz.getLocation().getAddress()) {
-					Log.d("TAG", "  " + address);
-					//System.out.println("  " + address);
+					//Log.d("TAG", "  " + address);
 				}
-				Log.d("TAG", "  " + biz.getLocation().getCity());
-				Log.d("TAG", biz.getUrl());
-
-				//System.out.print("  " + biz.getLocation().getCity());
-				//System.out.println(biz.getUrl());
-				//System.out.println();
+				//Log.d("TAG", "  " + biz.getLocation().getCity());
+				//Log.d("TAG", biz.getUrl());
 			}
-			
+			*/
 			
 		} catch(Exception e) {
 			Log.d("error", "Error, could not parse returned data!");

@@ -9,6 +9,8 @@ import com.yelp.v2.YelpSearchResult;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,16 +19,31 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import android.widget.TextView;
 
 public class TabRestaurants extends ListFragment{
 	
 	double latitude;
 	double longitude;
 	
+	ArrayList<HashMap<String, String>> restaurantList;
+	
 	private static final String TAG_ID = "id";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_PHONE = "phone";
 	private static final String TAG_REVIEW = "review";
+	private static final String TAG_URL = "url";
+	
+	@Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+    	String url = ((TextView) v.findViewById(R.id.url)).getText().toString();
+    	//Log.d("URL", url);
+    	
+		Intent i = new Intent(getActivity(), DisplayMovie.class);
+		i.putExtra("url", url);
+		startActivity(i); 
+    }
 
     @Override
        public void onActivityCreated(Bundle savedInstanceState) {
@@ -34,7 +51,7 @@ public class TabRestaurants extends ListFragment{
        
        YelpSearchResult searchResult;
 		
-		ArrayList<HashMap<String, String>> restaurantList = new ArrayList<HashMap<String, String>>();
+		restaurantList = new ArrayList<HashMap<String, String>>();
 		
 		latitude = 0.0;
 		longitude = 0.0;
@@ -49,25 +66,18 @@ public class TabRestaurants extends ListFragment{
 		
 		//Make a search on Yelp
 		YelpSearch search = new YelpSearch();
-		search.execute("restaurants", "30.361471", "-87.164326" );
+		search.execute("restaurants", "40.741653", "-74.175030" );
 		
 		try {
 			searchResult = search.get();
-			
-			Log.d("TAG", "Your search found " + searchResult.getTotal() + " results.");
-			Log.d("TAG", "Yelp returned " + searchResult.getBusinesses().size() + " businesses in this request.");
 			
 			for(Business biz : searchResult.getBusinesses()) {
 				String id = biz.getId();
 				String name = biz.getName();
 				int review = biz.getReviewCount();
 				String phone = biz.getPhone();
-/*
-				for(String address : biz.getLocation().getAddress()) {
-					Log.d("TAG", "  " + address);
-					//System.out.println("  " + address);
-				}
-*/				
+				String url = biz.getUrl();
+			
                // creating new HashMap
                HashMap<String, String> map = new HashMap<String, String>();
 
@@ -76,6 +86,7 @@ public class TabRestaurants extends ListFragment{
                map.put(TAG_NAME, name);
                map.put(TAG_REVIEW, Integer.toString(review));
                map.put(TAG_PHONE, phone);
+               map.put(TAG_URL, url);
                
                // adding HashList to ArrayList
                restaurantList.add(map);
@@ -94,8 +105,8 @@ public class TabRestaurants extends ListFragment{
         * */
        ListAdapter adapter = new SimpleAdapter(getActivity(), restaurantList,
                R.layout.list_item,
-               new String[] { TAG_NAME, TAG_REVIEW, TAG_PHONE }, new int[] {
-                       R.id.name, R.id.email, R.id.mobile });
+               new String[] { TAG_NAME, TAG_REVIEW, TAG_PHONE, TAG_URL }, new int[] {
+                       R.id.name, R.id.email, R.id.mobile, R.id.url });
 
        setListAdapter(adapter);
 		

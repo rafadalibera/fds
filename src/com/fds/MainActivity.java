@@ -161,8 +161,9 @@ public class MainActivity extends FragmentActivity {
         public ListFragment getItem(int position) {
             return mFragments.get(position);
         }
-
     }
+    
+    
 }
 /*
 	@Override

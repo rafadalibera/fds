@@ -45,6 +45,11 @@
             android:name="com.fds.ActiveLife"
             android:label="@string/app_name" >
         </activity>
+        <activity 
+            android:name="com.fds.DisplayMovie"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
