@@ -124,8 +124,8 @@ public class TabMovies extends ListFragment {
                // adding each child node to HashMap key => value
                map.put(TAG_ID, id);
                map.put(TAG_TITLE, title);
-               map.put(TAG_RATINGS_SCORE, score+"/100");
-               map.put(TAG_RUNTIME, runtime+"min");
+               map.put(TAG_RATINGS_SCORE, "Rating "+score+"/100");
+               map.put(TAG_RUNTIME, runtime+" min");
                map.put(TAG_LINKS_ALTERNATE, url);
 
                // adding HashList to ArrayList

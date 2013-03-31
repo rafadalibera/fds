@@ -83,8 +83,8 @@ public class TabActiveLife extends ListFragment {
                // adding each child node to HashMap key => value
                map.put(TAG_ID, id);
                map.put(TAG_NAME, name);
-               map.put(TAG_REVIEW, Integer.toString(review));
-               map.put(TAG_PHONE, phone);
+               map.put(TAG_REVIEW, "Review: "+Integer.toString(review));
+               map.put(TAG_PHONE, "Phone: "+phone);
                map.put(TAG_URL, url);
                
                // adding HashList to ArrayList

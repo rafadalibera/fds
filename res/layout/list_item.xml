@@ -28,21 +28,6 @@
 			android:visibility="invisible" >
         </TextView>
         
-                <!-- Linear layout for cost and price Cost: Rs.100 -->
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- Cost Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#5d5d5d"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:text="Rating: " >
-        </TextView>
-        <!-- Price Label -->
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
@@ -51,24 +36,7 @@
             android:textStyle="bold"
             android:gravity="left">
         </TextView>
-        </LinearLayout>
         
-        
-        <!-- Linear layout for cost and price Cost: Rs.100 -->
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- Cost Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#5d5d5d"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:text="Runtime: " >
-        </TextView>
-        <!-- Price Label -->
         <TextView
             android:id="@+id/mobile"
             android:layout_width="wrap_content"
@@ -77,7 +45,6 @@
             android:textStyle="bold"
             android:gravity="left">
         </TextView>
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
