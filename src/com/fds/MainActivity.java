@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 	
 	Button movies;
+	Button restaurants;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +19,20 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		movies = (Button) findViewById (R.id.buttonMovies);
+		restaurants = (Button) findViewById (R.id.buttonRestaurants);
 		
 		movies.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(getApplicationContext(), MoviesSearch.class);
+				startActivity(intent);
+			}
+		});
+		
+		restaurants.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getApplicationContext(), Locator.class);
 				startActivity(intent);
 			}
 		});
