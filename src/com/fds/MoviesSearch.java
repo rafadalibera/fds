@@ -29,22 +29,30 @@ public class MoviesSearch extends ListActivity{
 	TextView synopsis;
 	
     // url to make request
-    private static String url = "http://api.androidhive.info/contacts/";
- 
+    private static String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=2kmkxmvk58re97tw6w9a3qef";
+    //private static String url = "http://api.androidhive.info/contacts/";
+    
+    	
     // JSON Node names
-    private static final String TAG_CONTACTS = "contacts";
+    private static final String TAG_MOVIES = "movies";
     private static final String TAG_ID = "id";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_EMAIL = "email";
-    private static final String TAG_ADDRESS = "address";
-    private static final String TAG_GENDER = "gender";
-    private static final String TAG_PHONE = "phone";
-    private static final String TAG_PHONE_MOBILE = "mobile";
-    private static final String TAG_PHONE_HOME = "home";
-    private static final String TAG_PHONE_OFFICE = "office";
+    private static final String TAG_TITLE = "title";
+    private static final String TAG_YEAR = "year";
+    private static final String TAG_MPAA = "mpaa_rating";
+    private static final String TAG_CRITICS = "critics_consensus";
+    private static final String TAG_RUNTIME = "runtime";
+    private static final String TAG_POSTERS = "posters";
+    private static final String TAG_POSTERS_THUMBNAIL = "thumbnail";
+    private static final String TAG_POSTERS_PROFILE = "profile";
+    private static final String TAG_POSTERS_DETAILED = "detailed";
+    private static final String TAG_POSTERS_ORIGINAL = "original";
+    private static final String TAG_SYNOPSIS = "synopsis";
+    private static final String TAG_RATINGS = "ratings";
+    private static final String TAG_RATINGS_SCORE = "critics_score";
+    
  
     // contacts JSONArray
-    JSONArray contacts = null;
+    JSONArray movies = null;
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,35 +70,42 @@ public class MoviesSearch extends ListActivity{
  */
 
         JSONSearch search = new JSONSearch();
-        search.execute(url, TAG_CONTACTS);
+        search.execute(url, TAG_MOVIES);
+        
+        Log.d("TAG", "passed here");
         
         try {
-			contacts = search.get();
+			movies = search.get();
+			Log.d("TAG", Integer.toString(movies.length()));
 			
-			for(int i = 0; i < contacts.length(); i++){
-                JSONObject c = contacts.getJSONObject(i);
+			for(int i = 0; i < movies.length(); i++){
+                JSONObject c = movies.getJSONObject(i);
  
                 // Storing each json item in variable
                 String id = c.getString(TAG_ID);
-                String name = c.getString(TAG_NAME);
-                String email = c.getString(TAG_EMAIL);
-                String address = c.getString(TAG_ADDRESS);
-                String gender = c.getString(TAG_GENDER);
+                String title = c.getString(TAG_TITLE);
+                String year = c.getString(TAG_YEAR);
+                String mpaa = c.getString(TAG_MPAA);
+                //String critics = c.getString(TAG_CRITICS);
+                String runtime = c.getString(TAG_RUNTIME);
+                String synopsis = c.getString(TAG_SYNOPSIS);
  
                 // Phone number is agin JSON Object
-                JSONObject phone = c.getJSONObject(TAG_PHONE);
-                String mobile = phone.getString(TAG_PHONE_MOBILE);
-                String home = phone.getString(TAG_PHONE_HOME);
-                String office = phone.getString(TAG_PHONE_OFFICE);
+                JSONObject posters = c.getJSONObject(TAG_POSTERS);
+                String thumbnail = posters.getString(TAG_POSTERS_THUMBNAIL);
+                String profile = posters.getString(TAG_POSTERS_PROFILE);
+                
+                JSONObject rating = c.getJSONObject(TAG_RATINGS);
+                String score = rating.getString(TAG_RATINGS_SCORE);
  
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
  
                 // adding each child node to HashMap key => value
                 map.put(TAG_ID, id);
-                map.put(TAG_NAME, name);
-                map.put(TAG_EMAIL, email);
-                map.put(TAG_PHONE_MOBILE, mobile);
+                map.put(TAG_TITLE, title);
+                map.put(TAG_RATINGS_SCORE, score+"/100");
+                map.put(TAG_RUNTIME, runtime+"min");
  
                 // adding HashList to ArrayList
                 contactList.add(map);
@@ -118,7 +133,7 @@ public class MoviesSearch extends ListActivity{
          * */
         ListAdapter adapter = new SimpleAdapter(this, contactList,
                 R.layout.list_item,
-                new String[] { TAG_NAME, TAG_EMAIL, TAG_PHONE_MOBILE }, new int[] {
+                new String[] { TAG_TITLE, TAG_RATINGS_SCORE, TAG_RUNTIME }, new int[] {
                         R.id.name, R.id.email, R.id.mobile });
  
         setListAdapter(adapter);
