@@ -12,6 +12,8 @@ public class MainActivity extends Activity {
 	
 	Button movies;
 	Button restaurants;
+	Button night;
+	Button active;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class MainActivity extends Activity {
 		
 		movies = (Button) findViewById (R.id.buttonMovies);
 		restaurants = (Button) findViewById (R.id.buttonRestaurants);
+		night = (Button) findViewById (R.id.buttonNightLife);
+		active = (Button) findViewById (R.id.buttonActiveLife);
 		
 		movies.setOnClickListener(new OnClickListener() {
 			@Override
@@ -32,11 +36,29 @@ public class MainActivity extends Activity {
 		restaurants.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent intent = new Intent(getApplicationContext(), Locator.class);
+				Intent intent = new Intent(getApplicationContext(), Restaurants.class);
+				startActivity(intent);
+			}
+		});
+		
+		night.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getApplicationContext(), NightLife.class);
+				startActivity(intent);
+			}
+		});
+		
+		active.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getApplicationContext(), ActiveLife.class);
 				startActivity(intent);
 			}
 		});
 	}
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

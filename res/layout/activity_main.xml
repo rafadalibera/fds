@@ -32,4 +32,22 @@
         android:layout_marginTop="31dp"
         android:text="restaurants" />
 
+    <Button
+        android:id="@+id/buttonNightLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textTitle"
+        android:layout_below="@+id/buttonRestaurants"
+        android:layout_marginTop="18dp"
+        android:text="Night" />
+
+    <Button
+        android:id="@+id/buttonActiveLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="26dp"
+        android:text="Active" />
+
 </RelativeLayout>

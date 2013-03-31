@@ -33,6 +33,18 @@
             android:name="com.fds.Locator"
             android:label="@string/app_name" >
         </activity>
+        <activity 
+            android:name="com.fds.Restaurants"
+            android:label="@string/app_name" >
+        </activity>
+                <activity 
+            android:name="com.fds.NightLife"
+            android:label="@string/app_name" >
+        </activity>
+                <activity 
+            android:name="com.fds.ActiveLife"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
