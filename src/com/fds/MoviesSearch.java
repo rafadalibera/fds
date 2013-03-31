@@ -163,8 +163,8 @@ public class MoviesSearch extends ListActivity{
         */
     }
 }
-
-
+//---------------------------------------------------------------
+/*
 class JSONSearch extends AsyncTask<String, Void, JSONArray> {
 	
 	private JSONArray returnList;
@@ -200,3 +200,4 @@ class JSONSearch extends AsyncTask<String, Void, JSONArray> {
 	}
 
 }
+*/
