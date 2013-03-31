@@ -29,19 +29,13 @@ public class YelpSearch extends AsyncTask<String, Void, YelpSearchResult>{
 		String longitude = params[2];
 		
 		YelpSearchResult places = null;
-		
-		// Define your keys, tokens and secrets.  These are available from the Yelp website.  
-		String CONSUMER_KEY = "3C5eXVeaojxIZaIvGtYcVA";
-		String CONSUMER_SECRET = "PH-OzSS3sC-4N5tkEDzhv75Pro8";
-		String TOKEN = "4E-LHb6CjBuZ1sBHxCQ8EAiVm7myWNSD";
-		String TOKEN_SECRET = "SBf1gxc-rKJkeelVfkMQz-EFjow";
-/*
+
 		// Define your keys, tokens and secrets.  These are available from the Yelp website.  
 		String CONSUMER_KEY = "PUT YOUR CONSUMER KEY HERE";
 		String CONSUMER_SECRET = "PUT YOUR CONSUMER SECRET HERE";
 		String TOKEN = "PUT YOUR TOKEN HERE";
 		String TOKEN_SECRET = "PUT YOUR TOKEN SECRET HERE";
-*/
+
 		// Execute a signed call to the Yelp service.  
 		OAuthService service = new ServiceBuilder().provider(YelpV2API.class).apiKey(CONSUMER_KEY).apiSecret(CONSUMER_SECRET).build();
 		Token accessToken = new Token(TOKEN, TOKEN_SECRET);
